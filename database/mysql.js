@@ -34,13 +34,11 @@ const userRegister = function(req, res) {
         fields
       ) {
         if (error) {
-          console.log("ERROR OCURRED", error);
           res.send({
             code: 400,
             failed: "error ocurred"
           });
         } else {
-          console.log("THE SOLUTION IS: ", results);
           res.send({
             code: 200,
             sucess: "user registered sucessfully"
@@ -61,13 +59,11 @@ const userLogin = function(req, res) {
     fields
   ) {
     if (error) {
-      console.log("ERROR OCCURED", error);
       res.send({
         code: 400,
         failed: "error ocurred"
       });
     } else {
-      console.log("The Solution is: ", results);
       if (results.length > 0) {
         bcrypt.compare(password, results[0].password, function(err, bcryptRes) {
           if (!bcryptRes) {
@@ -76,7 +72,6 @@ const userLogin = function(req, res) {
               success: " Email and passord do not match"
             });
           } else {
-            console.log("what is res res ", res);
             res.send({
               code: 200,
               success: "login sucessful"
@@ -88,6 +83,7 @@ const userLogin = function(req, res) {
     }
   });
 };
+
 const insertGlucose = function(when_mesuare, glucose, created, callback) {
   connection.query(
     "INSERT INTO glucose (when_mesuare, glucose, created) VALUES (?, ?, ?)",
@@ -96,7 +92,6 @@ const insertGlucose = function(when_mesuare, glucose, created, callback) {
       if (err) {
         callback(err, null);
       } else {
-        console.log(results);
         callback(null, results);
       }
     }
