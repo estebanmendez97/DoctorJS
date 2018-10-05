@@ -1,5 +1,3 @@
-// If using MySQL, install mysql2 package with npm install -S mysql2
-//mysql2 npm package has support for Promises
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 
