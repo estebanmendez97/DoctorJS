@@ -19,6 +19,7 @@ class App extends Component {
     this.logout = this.logout.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
   }
+
   componentDidMount() {}
 
   handleLogIn(user, pw) {
@@ -50,6 +51,7 @@ class App extends Component {
   }
 
   logout() {
+    console.log("LogOut func");
     this.setState({
       username: "",
       isLogin: false
