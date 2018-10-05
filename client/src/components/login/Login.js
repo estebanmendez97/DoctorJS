@@ -12,10 +12,10 @@ class Login extends Component {
     };
     this.submitAuth = this.submitAuth.bind(this);
   }
-
   submitAuth() {
     const { username, password } = this.state;
     this.props.parentContext.props.handleLogIn(username, password);
+
   }
 
   render() {

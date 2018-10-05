@@ -6,8 +6,8 @@ import Loginscreen from './components/login/LoginScreen.js';
 import UploadScreen from './components/login/PrimaryScreen';
 import Logout from '../src/components/login/Logout.js';
 import axios from 'axios';
+import LoginScreen from "./components/login/LoginScreen.js";
 
-// injectTapEventPlugin();
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +19,6 @@ class App extends Component {
     this.logout = this.logout.bind(this);
     this.handleLogIn = this.handleLogIn.bind(this);
   }
-
   componentDidMount() {
     console.log(this.state);
   }
@@ -53,7 +52,6 @@ class App extends Component {
   }
 
   logout() {
-    console.log('LogOut func');
     this.setState({
       username: '',
       isLogin: false,

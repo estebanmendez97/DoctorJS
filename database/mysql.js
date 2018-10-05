@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 
 //change database credentials as needed
 const connection = mysql.createConnection({
+
   host: 'localhost',
   user: 'student',
   password: 'password',
@@ -14,6 +15,7 @@ connection.connect(function(err) {
     console.log('Database is is connected...nn');
   } else {
     console.log('Error connecting database....nn');
+
   }
 });
 
@@ -85,6 +87,22 @@ const userLogin = function(req, res) {
     }
   });
 };
+const insertGlucose = function(when_mesuare, glucose, created, callback) {  
+  
+  connection.query(
+    'INSERT INTO glucose (when_mesuare, glucose, created) VALUES (?, ?, ?)',
+    [when_mesuare, glucose, created],
+    (err, results, fields) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log(results);
+        callback(null, results);
+      }
+    }
+  );
+};
 
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
+module.exports.insertGlucose = insertGlucose;

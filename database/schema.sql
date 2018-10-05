@@ -11,4 +11,15 @@ CREATE TABLE users (
   created datetime NOT NULL,
   modified datetime NOT NULL,
   PRIMARY KEY (id)
-)
+);
+
+CREATE TABLE glucose (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  when_mesuare varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  glucose  varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  created datetime NOT NULL,
+  PRIMARY KEY (id)
+);
+
+
+

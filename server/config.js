@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require("compression");
 const login = require("../database/mysql.js");
+const submitLevel = require("../database/mysql.js");
 const app = express();
 
 //middleware
@@ -23,11 +24,38 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+app.post('/submitLevel', function(req, res) {
+  let when_mesuare = req.body.whenMesuare;
+  let glucose = req.body.Glucose;
+  var created = new Date();
+  if (!when_mesuare || !glucose) {
+    res.sendStatus(400);
+    console.log(when_mesuare);
+    console.log(glucose);
+    console.log(created);
+  } else {
+    submitLevel.insertGlucose(when_mesuare, glucose, created, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+        
+      } else {
+        res.status(200).json(results);
+        console.log("server");
+      }
+    });
+  }
+ });
+
+
+
+
 var router = express.Router();
 
 //test route
-router.get("/", function(req, res) {
-  res.json({ message: "welcome to our upload module apis" });
+router.get("/glucose", function(req, res) {
+  res.json({ message: "welcome to our server" });
 });
 
 //router to our handle user registration
