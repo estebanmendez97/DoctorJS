@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import $ from "jquery";
-//import axios from "axios";
 
 class SugarSub extends Component {
   constructor(props) {
