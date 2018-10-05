@@ -13,12 +13,11 @@
     "build": "webpack --config webpack.config.prod.js --mode production"
   },
   "dependencies": {
-    "material-ui": "^0.20.2",
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "express": "^4.16.3",
-
     "jquery": "^3.3.1",
     "material-ui": "^0.20.2",
     "mysql2": "^1.6.1",
