@@ -26,9 +26,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.post("/submitLevel", function(req, res) {
 
-app.post('/submitLevel', function(req, res) {
+app.post("/submitLevel", function(req, res) {
   let when_mesuare = req.body.whenMesuare;
   let glucose = req.body.Glucose;
   var created = new Date();
@@ -47,18 +46,10 @@ app.post('/submitLevel', function(req, res) {
           res.status(200).json(results);
           console.log("server");
         }
-    submitLevel.insertGlucose(when_mesuare, glucose, created, (err, results) => {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-
-      } else {
-        res.status(200).json(results);
-        console.log("server");
       }
     );
   }
-
+});
 
  app.post('/carbLevel', function(req, res) {
    console.log(req.body);
