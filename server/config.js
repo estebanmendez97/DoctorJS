@@ -3,12 +3,8 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const login = require("../database/mysql.js");
 const submitLevel = require("../database/mysql.js");
-<<<<<<< HEAD
 const submitReading = require("../database/mysql.js");
-
-=======
 const carbLevel = require("../database/mysql.js");
->>>>>>> graph
 const app = express();
 
 //middleware
@@ -30,20 +26,15 @@ app.use(function(req, res, next) {
   next();
 });
 
-<<<<<<< HEAD
 app.post("/submitLevel", function(req, res) {
-=======
-
 
 app.post('/submitLevel', function(req, res) {
->>>>>>> graph
   let when_mesuare = req.body.whenMesuare;
   let glucose = req.body.Glucose;
   var created = new Date();
   if (!when_mesuare || !glucose) {
     res.sendStatus(400);
   } else {
-<<<<<<< HEAD
     submitLevel.insertGlucose(
       when_mesuare,
       glucose,
@@ -56,7 +47,6 @@ app.post('/submitLevel', function(req, res) {
           res.status(200).json(results);
           console.log("server");
         }
-=======
     submitLevel.insertGlucose(when_mesuare, glucose, created, (err, results) => {
       if (err) {
         console.log(err);
@@ -65,14 +55,10 @@ app.post('/submitLevel', function(req, res) {
       } else {
         res.status(200).json(results);
         console.log("server");
->>>>>>> graph
       }
     );
   }
-<<<<<<< HEAD
-});
-=======
- });
+
 
  app.post('/carbLevel', function(req, res) {
    console.log(req.body);
@@ -98,7 +84,6 @@ app.post('/submitLevel', function(req, res) {
  });
 
 
->>>>>>> graph
 
 app.post("/bloodPresure", function(req, res) {
   console.log(res.body);
