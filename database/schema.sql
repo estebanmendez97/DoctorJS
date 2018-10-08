@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS glucose (
   id int(11) NOT NULL AUTO_INCREMENT,
   when_mesuare varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  glucose  varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  glucose varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   created datetime NOT NULL,
   PRIMARY KEY (id)
 );

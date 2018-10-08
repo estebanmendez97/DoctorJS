@@ -4,7 +4,7 @@ const compression = require("compression");
 const login = require("../database/mysql.js");
 const submitLevel = require("../database/mysql.js");
 const submitReading = require("../database/mysql.js");
-
+const carbLevel = require("../database/mysql.js");
 const app = express();
 
 //middleware
@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
   );
   next();
 });
+
 
 app.post("/submitLevel", function(req, res) {
   let when_mesuare = req.body.whenMesuare;
@@ -49,6 +50,31 @@ app.post("/submitLevel", function(req, res) {
     );
   }
 });
+
+ app.post('/carbLevel', function(req, res) {
+   console.log(req.body);
+   let amount_mesuare= req.body.amountMesuare;
+   let carbs = req.body.Carbs;
+   var carbs_time = new Date();
+   if (!amount_mesuare || !carbs) {
+     res.sendStatus(400);
+     console.log(amount_mesuare);
+     console.log(carbs);
+     console.log(carbs_time);
+   } else {
+     carbLevel.insertCarbs(amount_mesuare, carbs, carbs_time, (err, results) => {
+       if (err){
+         console.log(err);
+         res.sendStatus(500);
+       } else {
+         res.status(200).json(results);
+         console.log("server");
+       }
+     });
+   }
+ });
+
+
 
 app.post("/bloodPresure", function(req, res) {
   console.log(res.body);
@@ -76,7 +102,10 @@ app.post("/bloodPresure", function(req, res) {
 
 var router = express.Router();
 
-//test route
+// test route
+router.get("/carbs", function(req, res){
+  res.json({ message: "welcome to our server"})
+});
 router.get("/glucose", function(req, res) {
   res.json({ message: "welcome to our server" });
 });

@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "holacode",
   database: "doctorJS"
 });
 connection.connect(function(err) {
@@ -83,6 +83,7 @@ const userLogin = function(req, res) {
     }
   });
 };
+
 const insertGlucose = function(when_mesuare, glucose, created, callback) {
   connection.query(
     "INSERT INTO glucose (when_mesuare, glucose, created) VALUES (?, ?, ?)",
@@ -116,7 +117,26 @@ const insertBloodPressure = function(
   );
 };
 
+const insertCarbs = function(amount_mesuare, carbs, carbs_time, callback) {
+  connection.query(
+    "INSERT INTO carbs (amount_mesuare, carbs, carbs_time) VALUES (?, ?, ?)",
+    [amount_mesuare, carbs, carbs_time],
+    (err, results, fields) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log(results);
+        callback(null, results);
+      }
+    }
+  );
+};
+
+
+
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
 module.exports.insertGlucose = insertGlucose;
 module.exports.insertBloodPressure = insertBloodPressure;
+
+module.exports.insertCarbs = insertCarbs;
