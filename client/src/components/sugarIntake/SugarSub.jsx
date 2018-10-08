@@ -40,8 +40,12 @@ class SugarSub extends Component {
         whenMesuare: whenMesuare,
         Glucose: Glucose
       }),
-      success: data => {},
-      error: (xhr, status, error) => {}
+      success: data => {
+        console.log(data);
+      },
+      error: (xhr, status, error) => {
+        console.log(error);
+      }
     });
   }
 

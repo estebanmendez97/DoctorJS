@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import SugarSub from "../sugarIntake/SugarSub.jsx";
+import Carbs from "../carbsIntake/Carbs.jsx";
 
 
 class UploadScreen extends Component {
@@ -11,7 +12,10 @@ class UploadScreen extends Component {
           <center>Welcome to DoctorJS!!!</center>
         </h1>
         <SugarSub />
+        <br />
+        <Carbs />
       </div>
+
       </Fragment>
     );
 
