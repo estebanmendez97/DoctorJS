@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "password",
+  password: "holacode",
   database: "doctorJS"
 });
 connection.connect(function(err) {
