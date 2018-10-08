@@ -48,7 +48,6 @@ class App extends Component {
   }
 
   logout() {
-    console.log("LogOut func");
     this.setState({
       username: "",
       isLogin: false

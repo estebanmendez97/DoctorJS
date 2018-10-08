@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const compression = require("compression");
 const login = require("../database/mysql.js");
 const submitLevel = require("../database/mysql.js");
+const submitReading = require("../database/mysql.js");
 
 const app = express();
 
@@ -49,13 +50,39 @@ app.post("/submitLevel", function(req, res) {
   }
 });
 
+app.post("/bloodPresure", function(req, res) {
+  console.log(res.body);
+  var when_reading = req.body.whenReading;
+  var bloodPresure = req.body.bloodPresure;
+  var created = new Date();
+  if (!when_reading || !bloodPresure) {
+    res.sendStatus(400);
+  } else {
+    submitReading.insertBloodPressure(
+      when_reading,
+      bloodPresure,
+      created,
+      (err, results) => {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200).json(results);
+        }
+      }
+    );
+  }
+});
+
 var router = express.Router();
 
 //test route
 router.get("/glucose", function(req, res) {
   res.json({ message: "welcome to our server" });
 });
-
+//router.get("/bloodPresure", function(req, res) {
+//res.json({ message: "this is the blood pressure reading" });
+//});
 //router to our handle user registration
 router.post("/register", login.userRegister);
 router.post("/login", login.userLogin);

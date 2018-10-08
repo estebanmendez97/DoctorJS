@@ -83,7 +83,6 @@ const userLogin = function(req, res) {
     }
   });
 };
-
 const insertGlucose = function(when_mesuare, glucose, created, callback) {
   connection.query(
     "INSERT INTO glucose (when_mesuare, glucose, created) VALUES (?, ?, ?)",
@@ -98,6 +97,26 @@ const insertGlucose = function(when_mesuare, glucose, created, callback) {
   );
 };
 
+const insertBloodPressure = function(
+  when_reading,
+  bloodPresure,
+  created,
+  callback
+) {
+  connection.query(
+    "INSERT INTO bloodPressure(when_reading, bloodPresure, created) VALUES (?, ?, ?)",
+    [when_reading, bloodPresure, created],
+    (err, results, fields) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
 module.exports.insertGlucose = insertGlucose;
+module.exports.insertBloodPressure = insertBloodPressure;
