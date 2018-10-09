@@ -2,7 +2,7 @@
   "name": "react-boilerplate",
   "version": "1.0.0",
   "description": "Modern React boilerplate",
-  "main": "index.js",
+  "main": "Index.js",
   "repository": "https://github.com/BrunoTorresF/react-boilerplate",
   "author": "Bruno Torres",
   "license": "MIT",
