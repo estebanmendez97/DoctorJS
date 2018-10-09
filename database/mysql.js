@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "holacode",
+  password: "password",
   database: "doctorJS"
 });
 connection.connect(function(err) {
@@ -131,8 +131,6 @@ const insertCarbs = function(amount_mesuare, carbs, carbs_time, callback) {
     }
   );
 };
-
-
 
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
