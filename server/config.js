@@ -26,7 +26,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-
 app.post("/submitLevel", function(req, res) {
   let when_mesuare = req.body.whenMesuare;
   let glucose = req.body.Glucose;
@@ -43,38 +42,36 @@ app.post("/submitLevel", function(req, res) {
           console.log(err);
           res.sendStatus(500);
         } else {
-          res.status(200).json(results);
-          console.log("server");
+          res.status(200);
+          res.send(JSON.stringify(results));
         }
       }
     );
   }
 });
 
- app.post('/carbLevel', function(req, res) {
-   console.log(req.body);
-   let amount_mesuare= req.body.amountMesuare;
-   let carbs = req.body.Carbs;
-   var carbs_time = new Date();
-   if (!amount_mesuare || !carbs) {
-     res.sendStatus(400);
-     console.log(amount_mesuare);
-     console.log(carbs);
-     console.log(carbs_time);
-   } else {
-     carbLevel.insertCarbs(amount_mesuare, carbs, carbs_time, (err, results) => {
-       if (err){
-         console.log(err);
-         res.sendStatus(500);
-       } else {
-         res.status(200).json(results);
-         console.log("server");
-       }
-     });
-   }
- });
-
-
+app.post("/carbLevel", function(req, res) {
+  console.log(req.body);
+  let amount_mesuare = req.body.amountMesuare;
+  let carbs = req.body.Carbs;
+  var carbs_time = new Date();
+  if (!amount_mesuare || !carbs) {
+    res.sendStatus(400);
+    console.log(amount_mesuare);
+    console.log(carbs);
+    console.log(carbs_time);
+  } else {
+    carbLevel.insertCarbs(amount_mesuare, carbs, carbs_time, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.status(200).json(results);
+        console.log("server");
+      }
+    });
+  }
+});
 
 app.post("/bloodPresure", function(req, res) {
   console.log(res.body);
@@ -93,18 +90,40 @@ app.post("/bloodPresure", function(req, res) {
           console.log(err);
           res.sendStatus(500);
         } else {
-          res.sendStatus(200).json(results);
+          res.status(200);
+          res.send(JSON.stringify(results));
         }
       }
     );
   }
 });
 
+app.post("/userData", function(req, res) {
+  console.log(res.body);
+  var gender = req.body.gender;
+  var age = req.body.age;
+  var weight = req.body.weight;
+  var height = req.body.height;
+  if (!gender || !age || !weight || !height) {
+    res.sendStatus(400);
+  } else {
+    submitReading.userData(gender, age, weight, height, (err, results) => {
+      if (err) {
+        console.log("HERE IS THE SERVER ERROR", err);
+        res.sendStatus(500);
+      } else {
+        res.status(200);
+        res.send(JSON.stringify(results));
+      }
+    });
+  }
+});
+
 var router = express.Router();
 
 // test route
-router.get("/carbs", function(req, res){
-  res.json({ message: "welcome to our server"})
+router.get("/carbs", function(req, res) {
+  res.json({ message: "welcome to our server" });
 });
 router.get("/glucose", function(req, res) {
   res.json({ message: "welcome to our server" });

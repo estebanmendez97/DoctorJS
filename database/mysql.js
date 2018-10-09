@@ -132,9 +132,25 @@ const insertCarbs = function(amount_mesuare, carbs, carbs_time, callback) {
   );
 };
 
+const userData = function(gender, age, weight, height, callback) {
+  connection.query(
+    "INSERT INTO userData (gender, age, weight, height) VALUES (?, ?, ?, ?)",
+    [gender, age, weight, height],
+    (err, results, fields) => {
+      if (err) {
+        console.log("HERE IS THE DATABASE ERROR", err);
+        callback(err, null);
+      } else {
+        console.log(results);
+        callback(null, results);
+      }
+    }
+  );
+};
+
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
 module.exports.insertGlucose = insertGlucose;
 module.exports.insertBloodPressure = insertBloodPressure;
-
 module.exports.insertCarbs = insertCarbs;
+module.exports.userData = userData;

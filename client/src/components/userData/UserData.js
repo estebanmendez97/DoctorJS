@@ -14,6 +14,7 @@ class UserData extends Component {
     this.handleWeight = this.handleWeight.bind(this);
     this.handleGender = this.handleGender.bind(this);
     this.handleHeight = this.handleHeight.bind(this);
+    this.submitData = this.submitData.bind(this);
   }
 
   handleGender(e) {
@@ -59,7 +60,7 @@ class UserData extends Component {
         console.log(data);
       },
       error: (xhr, status, error) => {
-        console.log(error);
+        console.log("FUNCTION ERROR", error);
       }
     });
   }
@@ -96,6 +97,8 @@ class UserData extends Component {
           <br />
           <h4>Your Height</h4>
           <input value={this.height} onChange={this.handleHeight} />
+          <br />
+          <button onClick={this.submitData}>Submit your info</button>
         </Fragment>
       </div>
     );
