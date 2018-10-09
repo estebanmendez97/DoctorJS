@@ -29,9 +29,18 @@ CREATE TABLE IF NOT EXISTS bloodPressure (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS carbs (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  amount_mesuare varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  carbs varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  carbs_time datetime NOT NULL,
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE IF NOT EXISTS userData (
   id int(11) NOT NULL AUTO_INCREMENT,
   gender varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  age int(10) COLLATE utf8_unicode_ci NOT NULL,
   weight int COLLATE utf8_unicode_ci NOT NULL,
   height int COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (id)
