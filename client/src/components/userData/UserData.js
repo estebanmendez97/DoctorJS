@@ -87,7 +87,11 @@ class UserData extends Component {
           <br />
           <br />
           <h4>Your Gender</h4>
-          <input value={this.gender} onChange={this.handleGender} />
+          <select value={this.gender} onChange={this.handleGender}>
+            <option>Choose your Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
           <br />
           <h4>Your Age</h4>
           <input value={this.age} onChange={this.handleAge} />
@@ -97,6 +101,7 @@ class UserData extends Component {
           <br />
           <h4>Your Height</h4>
           <input value={this.height} onChange={this.handleHeight} />
+          <br />
           <br />
           <button onClick={this.submitData}>Submit your info</button>
         </Fragment>

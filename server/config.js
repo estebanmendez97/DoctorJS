@@ -1,10 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const compression = require("compression");
-const login = require("../database/mysql.js");
-const submitLevel = require("../database/mysql.js");
-const submitReading = require("../database/mysql.js");
-const carbLevel = require("../database/mysql.js");
+const database = require("../database/mysql.js");
 const app = express();
 
 //middleware
@@ -33,55 +30,45 @@ app.post("/submitLevel", function(req, res) {
   if (!when_mesuare || !glucose) {
     res.sendStatus(400);
   } else {
-    submitLevel.insertGlucose(
-      when_mesuare,
-      glucose,
-      created,
-      (err, results) => {
-        if (err) {
-          console.log(err);
-          res.sendStatus(500);
-        } else {
-          res.status(200);
-          res.send(JSON.stringify(results));
-        }
+    database.insertGlucose(when_mesuare, glucose, created, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      } else {
+        res.status(200);
+        res.send(JSON.stringify(results));
       }
-    );
+    });
   }
 });
 
 app.post("/carbLevel", function(req, res) {
-  console.log(req.body);
   let amount_mesuare = req.body.amountMesuare;
   let carbs = req.body.Carbs;
   var carbs_time = new Date();
   if (!amount_mesuare || !carbs) {
     res.sendStatus(400);
-    console.log(amount_mesuare);
-    console.log(carbs);
-    console.log(carbs_time);
   } else {
-    carbLevel.insertCarbs(amount_mesuare, carbs, carbs_time, (err, results) => {
+    database.insertCarbs(amount_mesuare, carbs, carbs_time, (err, results) => {
       if (err) {
         console.log(err);
         res.sendStatus(500);
       } else {
-        res.status(200).json(results);
-        console.log("server");
+        res.status(200);
+        res.send(JSON.stringify(results));
       }
     });
   }
 });
 
 app.post("/bloodPresure", function(req, res) {
-  console.log(res.body);
   var when_reading = req.body.whenReading;
   var bloodPresure = req.body.bloodPresure;
   var created = new Date();
   if (!when_reading || !bloodPresure) {
     res.sendStatus(400);
   } else {
-    submitReading.insertBloodPressure(
+    database.insertBloodPressure(
       when_reading,
       bloodPresure,
       created,
@@ -107,7 +94,7 @@ app.post("/userData", function(req, res) {
   if (!gender || !age || !weight || !height) {
     res.sendStatus(400);
   } else {
-    submitReading.userData(gender, age, weight, height, (err, results) => {
+    database.userData(gender, age, weight, height, (err, results) => {
       if (err) {
         console.log("HERE IS THE SERVER ERROR", err);
         res.sendStatus(500);
@@ -118,22 +105,19 @@ app.post("/userData", function(req, res) {
     });
   }
 });
-
+app.get("/userData", function(req, res) {
+  database.displayUserData(function(err, data) {
+    if (err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
 var router = express.Router();
-
-// test route
-router.get("/carbs", function(req, res) {
-  res.json({ message: "welcome to our server" });
-});
-router.get("/glucose", function(req, res) {
-  res.json({ message: "welcome to our server" });
-});
-//router.get("/bloodPresure", function(req, res) {
-//res.json({ message: "this is the blood pressure reading" });
-//});
 //router to our handle user registration
-router.post("/register", login.userRegister);
-router.post("/login", login.userLogin);
+router.post("/register", database.userRegister);
+router.post("/login", database.userLogin);
 app.use("/api", router);
 app.listen(3000, function() {
   console.log("Listening on port 3000!");

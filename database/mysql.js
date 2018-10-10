@@ -148,9 +148,24 @@ const userData = function(gender, age, weight, height, callback) {
   );
 };
 
+const displayUserData = function(callback, gender, age, weight, height) {
+  connection.query(
+    "SELECT * FROM userData",
+    [gender, age, weight, height],
+    (err, results, fields) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
 module.exports.insertGlucose = insertGlucose;
 module.exports.insertBloodPressure = insertBloodPressure;
 module.exports.insertCarbs = insertCarbs;
 module.exports.userData = userData;
+module.exports.displayUserData = displayUserData;
