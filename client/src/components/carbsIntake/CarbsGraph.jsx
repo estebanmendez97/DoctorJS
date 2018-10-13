@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import PressureList from "./pressureList.jsx";
+import CarbsList from "./CarbsList.jsx";
 
-class PressureGraph extends Component {
+class CarbsGraph extends Component {
   constructor(props) {
     super(props);
     this.state = {
       list: []
     };
   }
+
   componentDidMount() {
     axios
-      .get("/bloodPresure")
+      .get("/carbLevel")
       .then(res => {
         this.setState({ list: res.data });
       })
@@ -24,9 +25,9 @@ class PressureGraph extends Component {
   render() {
     return (
       <div>
-        <PressureList pressure={this.state.list} />
+        <CarbsList carbsList={this.state.list} />
       </div>
     );
   }
 }
-export default PressureGraph;
+export default CarbsGraph;

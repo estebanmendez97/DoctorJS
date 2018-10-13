@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import Profile from "./Profile.jsx";
+
 import $ from "jquery";
 
 class UserData extends Component {
@@ -45,6 +47,7 @@ class UserData extends Component {
       height: e.target.value
     });
   }
+  //somewhwee here is gonna send the token (ajax jwt post)
   addData(gender, age, weight, height) {
     $.ajax({
       url: "/userData",
@@ -104,6 +107,8 @@ class UserData extends Component {
           <br />
           <br />
           <button onClick={this.submitData}>Submit your info</button>
+          <br />
+          <Profile />
         </Fragment>
       </div>
     );

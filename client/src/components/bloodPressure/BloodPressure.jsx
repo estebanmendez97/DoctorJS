@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import $ from "jquery";
 
+import PressureGraph from "./PressureGraph.jsx";
+
 class BloodPressure extends Component {
   constructor(props) {
     super(props);
@@ -85,6 +87,8 @@ class BloodPressure extends Component {
             <br />
             <button onClick={this.submitReading}>Submit</button>
           </h4>
+          <br />
+          <PressureGraph />
         </Fragment>
       </div>
     );

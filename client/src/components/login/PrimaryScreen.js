@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
+
 import SugarSub from "../sugarIntake/SugarSub.jsx";
 import BloodPressure from "../bloodPressure/BloodPressure.jsx";
 import Carbs from "../carbsIntake/Carbs.jsx";
-import UserData from "../userData/UserData.js";
+import UserData from "../userData/UserData.jsx";
 
 class UploadScreen extends Component {
   render() {

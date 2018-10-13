@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ProfileList from "./ProfileList.jsx";
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +19,11 @@ class Profile extends Component {
   }
 
   render() {
-    return <div>{this.state.profile}</div>;
+    return (
+      <div>
+        <ProfileList profileList={this.state.profile} />
+      </div>
+    );
   }
 }
 export default Profile;
