@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import AppBar from "material-ui/AppBar";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Tabs, Tab } from "material-ui/Tabs";
 import Loginscreen from "./components/login/LoginScreen.js";
 import UploadScreen from "./components/login/PrimaryScreen";
 import Logout from "../src/components/login/Logout.js";
 import axios from "axios";
+//const jwt = require("jsonwebtoken");
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
       .post(apiBaseUrl + "login", payload)
       .then(response => {
         if (response.data.code == 200) {
+          localStorage.setItem("token", response.data.token);
           console.log("Login Succesful");
           this.setState({
             username: `${user}`,
@@ -58,8 +60,10 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
+        <Tabs>
+          <Tab label="WElcome to DOctor JS!" />
+        </Tabs>
         <div>
-          <AppBar title="Welcome to DoctorJS" />
           <Logout logout={this.logout} />
           <div className="App">
             {this.state.isLogin ? (

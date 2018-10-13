@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from "react";
+import CarbsGraph from "./CarbsGraph.jsx";
 import $ from "jquery";
 
 class Carbs extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       amountMesuare: undefined,
@@ -13,7 +14,6 @@ class Carbs extends Component {
     this.handleCarbs = this.handleCarbs.bind(this);
     this.submitLevel = this.submitLevel.bind(this);
     this.addLevel = this.addLevel.bind(this);
-
   }
 
   handleAmountMesuare(e) {
@@ -38,7 +38,7 @@ class Carbs extends Component {
       contentType: "application/json",
       data: JSON.stringify({
         amountMesuare: amountMesuare,
-        Carbs : Carbs
+        Carbs: Carbs
       }),
       success: data => {
         console.log(data);
@@ -58,7 +58,7 @@ class Carbs extends Component {
     });
   }
 
-  render(){
+  render() {
     return (
       <Fragment>
         <h3>
@@ -73,26 +73,23 @@ class Carbs extends Component {
             <option>lunch</option>
             <option>snack2</option>
             <option>Dinner</option>
-
-        </select>
-      </h3>
-      <br />
-      <h3>
-        Carbs Level:
-      <input
-        value={this.state.Carbs}
-        placeholder="000"
-        onChange={this.handleCarbs}
-        />
-      </h3>
-    <button onClick={this.submitLevel}>Submit</button>
-   </Fragment>
+          </select>
+        </h3>
+        <br />
+        <h3>
+          Carbs Level:
+          <input
+            value={this.state.Carbs}
+            placeholder="000"
+            onChange={this.handleCarbs}
+          />
+        </h3>
+        <button onClick={this.submitLevel}>Submit</button>
+        <br />
+        <CarbsGraph />
+      </Fragment>
     );
   }
 }
-
-
-
-
 
 export default Carbs;

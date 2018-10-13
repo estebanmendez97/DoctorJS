@@ -1,21 +1,38 @@
-import React, { Component } from "react";
-import Proptypes from "prop-types";
-import { withStyles } from "material-ui/core/styles";
-import AppBar from "material-ui/core/AppBar";
-import Toolbar from "material-ui/core/Toolbar";
-import Typography from "material-ui/core/Typography";
-import Button from "material-ui/core/Button";
-import IconButton from "material-ui/core/IconButton";
-import MenuIcon from "material-ui/icons/Menu";
+import React from "react";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { Tabs, Tab } from "material-ui/Tabs";
 
-class Navigation extends Component {
-  render() {
-    return (
-      <div>
-        <nav className="headerStyle" />
-      </div>
-    );
+const styles = {
+  headline: {
+    fonstsize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400
   }
-}
+};
 
+const Navigation = () => (
+  <MuiThemeProvider>
+    <Tabs>
+      <Tab label="Item One">
+        <div>
+          <h2 style={styles.headline}>Tab ONE</h2>
+          <p>React Component</p>
+        </div>
+      </Tab>
+      <Tab label="Item Two">
+        <div>
+          <h2 style={styles.headline}>Tab TWO</h2>
+          <p>React Component</p>
+        </div>
+      </Tab>
+      <Tab label="item three">
+        <div>
+          <h2 style={styles.headline}>Tab THREE</h2>
+          <p>React Component</p>
+        </div>
+      </Tab>
+    </Tabs>
+  </MuiThemeProvider>
+);
 export default Navigation;

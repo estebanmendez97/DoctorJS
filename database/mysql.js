@@ -1,11 +1,12 @@
 const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 //change database credentials as needed
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "holacode",
+  password: "password",
   database: "doctorJS"
 });
 connection.connect(function(err) {
@@ -30,8 +31,7 @@ const userRegister = function(req, res) {
       };
       connection.query("INSERT INTO users SET ?", users, function(
         error,
-        results,
-        fields
+        results
       ) {
         if (error) {
           res.send({
@@ -55,8 +55,7 @@ const userLogin = function(req, res) {
   var password = req.body.password;
   connection.query("SELECT * FROM users WHERE email = ?", [email], function(
     error,
-    results,
-    fields
+    results
   ) {
     if (error) {
       res.send({
@@ -72,10 +71,17 @@ const userLogin = function(req, res) {
               success: " Email and passord do not match"
             });
           } else {
-            res.send({
-              code: 200,
-              success: "login sucessful"
-            });
+            jwt.sign(
+              { email: email, password: password },
+              "secretkey",
+              (err, token) => {
+                res.send({
+                  code: 200,
+                  success: "login sucessful",
+                  token: token
+                });
+              }
+            );
           }
           // res == true
         });
@@ -88,7 +94,7 @@ const insertGlucose = function(when_mesuare, glucose, created, callback) {
   connection.query(
     "INSERT INTO glucose (when_mesuare, glucose, created) VALUES (?, ?, ?)",
     [when_mesuare, glucose, created],
-    (err, results, fields) => {
+    (err, results) => {
       if (err) {
         callback(err, null);
       } else {
@@ -107,7 +113,7 @@ const insertBloodPressure = function(
   connection.query(
     "INSERT INTO bloodPressure(when_reading, bloodPresure, created) VALUES (?, ?, ?)",
     [when_reading, bloodPresure, created],
-    (err, results, fields) => {
+    (err, results) => {
       if (err) {
         callback(err, null);
       } else {
@@ -121,7 +127,7 @@ const insertCarbs = function(amount_mesuare, carbs, carbs_time, callback) {
   connection.query(
     "INSERT INTO carbs (amount_mesuare, carbs, carbs_time) VALUES (?, ?, ?)",
     [amount_mesuare, carbs, carbs_time],
-    (err, results, fields) => {
+    (err, results) => {
       if (err) {
         callback(err, null);
       } else {
@@ -132,11 +138,89 @@ const insertCarbs = function(amount_mesuare, carbs, carbs_time, callback) {
   );
 };
 
+const userData = function(gender, age, weight, height, callback) {
+  connection.query(
+    "INSERT INTO userData (gender, age, weight, height) VALUES (?, ?, ?, ?)",
+    [gender, age, weight, height],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        console.log(results);
+        callback(null, results);
+      }
+    }
+  );
+};
 
+const displayUserData = function(callback, gender, age, weight, height) {
+  connection.query(
+    "SELECT * FROM userData",
+    [gender, age, weight, height],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
 
+const displaySugar = function(callback, when_mesuare, glucose, created) {
+  connection.query(
+    "SELECT * FROM glucose",
+    [when_mesuare, glucose, created],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+const displayPressure = function(
+  callback,
+  when_reading,
+  bloodPresure,
+  created
+) {
+  connection.query(
+    "SELECT * FROM bloodPressure",
+    [when_reading, bloodPresure, created],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+const displayCarbs = function(callback, amount_mesuare, carbs, carbs_time) {
+  connection.query(
+    "SELECT * FROM carbs",
+    [amount_mesuare, carbs, carbs_time],
+    (err, results) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    }
+  );
+};
+
+module.exports.displayCarbs = displayCarbs;
+module.exports.displayPressure = displayPressure;
+module.exports.displaySugar = displaySugar;
 module.exports.userRegister = userRegister;
 module.exports.userLogin = userLogin;
 module.exports.insertGlucose = insertGlucose;
 module.exports.insertBloodPressure = insertBloodPressure;
-
 module.exports.insertCarbs = insertCarbs;
+module.exports.userData = userData;
+module.exports.displayUserData = displayUserData;

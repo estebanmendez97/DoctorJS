@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import SugarChart from "./SugarChart.jsx";
 import $ from "jquery";
 
 class SugarSub extends Component {
@@ -90,6 +91,8 @@ class SugarSub extends Component {
           />
         </h4>
         <button onClick={this.submitLevel}>Submit</button>
+        <br />
+        <SugarChart />
       </Fragment>
     );
   }
