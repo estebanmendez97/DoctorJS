@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
-import SugarChart from "./SugarChart.jsx";
-import $ from "jquery";
+import SugarList from "./SugarList.jsx";
+import axios from "axios";
 
 class SugarSub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      whenMesuare: undefined,
-      Glucose: 0
+      levels: []
     };
 
     this.handleWhenMeasure = this.handleWhenMeasure.bind(this);
@@ -32,21 +31,22 @@ class SugarSub extends Component {
   }
 
   addLevel(whenMesuare, Glucose) {
-    $.ajax({
-      url: "/submitLevel",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
+    axios
+      .post("/submitLevel", {
         whenMesuare: whenMesuare,
         Glucose: Glucose
-      }),
-      success: data => {
-        console.log(data);
-      },
-      error: (xhr, status, error) => {
-        console.log(error);
-      }
-    });
+      })
+      .then(() => this.getLevel())
+      .catch(error => console.log("ERROR:", error));
+  }
+
+  getLevel() {
+    axios
+      .get("/submitLevel")
+      .then(res => this.setState({ levels: res.data }))
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   submitLevel(event) {
@@ -92,7 +92,7 @@ class SugarSub extends Component {
         </h4>
         <button onClick={this.submitLevel}>Submit</button>
         <br />
-        <SugarChart />
+        <SugarList sugarLevels={this.state.levels} />
       </Fragment>
     );
   }

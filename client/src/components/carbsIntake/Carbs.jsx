@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
-import CarbsGraph from "./CarbsGraph.jsx";
-import $ from "jquery";
+import CarbsList from "./CarbsList.jsx";
+import axios from "axios";
 
 class Carbs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      amountMesuare: undefined,
-      Carbs: 0
+      list: []
     };
 
     this.handleAmountMesuare = this.handleAmountMesuare.bind(this);
@@ -32,21 +31,24 @@ class Carbs extends Component {
   }
 
   addLevel(amountMesuare, Carbs) {
-    $.ajax({
-      url: "/carbLevel",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
+    axios
+      .post("/carbLevel", {
         amountMesuare: amountMesuare,
         Carbs: Carbs
-      }),
-      success: data => {
-        console.log(data);
-      },
-      error: (xhr, status, error) => {
-        console.log(error);
-      }
-    });
+      })
+      .then(() => this.getLevel())
+      .catch(error => console.log("ERROR:", error));
+  }
+
+  getLevel() {
+    axios
+      .get("/carbLevel")
+      .then(res => {
+        this.setState({ list: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   submitLevel(event) {
@@ -86,7 +88,7 @@ class Carbs extends Component {
         </h3>
         <button onClick={this.submitLevel}>Submit</button>
         <br />
-        <CarbsGraph />
+        <CarbsList carbsList={this.state.list} />
       </Fragment>
     );
   }
