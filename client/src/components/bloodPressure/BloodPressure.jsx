@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from "react";
-import $ from "jquery";
+import axios from "axios";
 
-import PressureGraph from "./PressureGraph.jsx";
+import PressureList from "./PressureList.jsx";
 
 class BloodPressure extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      whenReading: undefined,
-      bloodPresure: 0
+      list: []
     };
 
     this.addReading = this.addReading.bind(this);
@@ -19,7 +18,6 @@ class BloodPressure extends Component {
 
   handleWhenReading(e) {
     e.preventDefault();
-    console.log("this is the event", e.target.value);
     this.setState({
       whenReading: e.target.value
     });
@@ -33,21 +31,24 @@ class BloodPressure extends Component {
   }
 
   addReading(whenReading, bloodPresure) {
-    $.ajax({
-      url: "/bloodPresure",
-      type: "POST",
-      contentType: "application/json",
-      data: JSON.stringify({
+    axios
+      .post("/bloodPresure", {
         whenReading: whenReading,
         bloodPresure: bloodPresure
-      }),
-      success: data => {
-        console.log(data);
-      },
-      error: (xhr, status, error) => {
-        console.log(error);
-      }
-    });
+      })
+      .then(() => this.getReading())
+      .catch(error => console.log("Error:", error));
+  }
+
+  getReading() {
+    axios
+      .get("/bloodPresure")
+      .then(res => {
+        this.setState({ list: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   submitReading(event) {
@@ -88,7 +89,7 @@ class BloodPressure extends Component {
             <button onClick={this.submitReading}>Submit</button>
           </h4>
           <br />
-          <PressureGraph />
+          <PressureList pressure={this.state.list} />
         </Fragment>
       </div>
     );
