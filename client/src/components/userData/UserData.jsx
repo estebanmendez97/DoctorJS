@@ -86,9 +86,6 @@ class UserData extends Component {
     return (
       <div>
         <Fragment>
-          <h2>Your info</h2>
-          <br />
-          <br />
           <h4>Your Gender</h4>
           <select value={this.gender} onChange={this.handleGender}>
             <option>Choose your Gender</option>
