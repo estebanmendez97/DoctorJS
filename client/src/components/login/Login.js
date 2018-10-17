@@ -15,38 +15,39 @@ class Login extends Component {
   submitAuth() {
     const { username, password } = this.state;
     this.props.parentContext.props.handleLogIn(username, password);
-
   }
 
   render() {
     return (
       <div>
         <MuiThemeProvider>
-          <div>
-            <TextField
-              hintText="Enter your Email"
-              floatingLabelText="Username"
-              onChange={(event, newValue) =>
-                this.setState({ username: newValue })
-              }
-            />
-            <br />
-            <TextField
-              type="password"
-              hintText="Enter your password"
-              floatingLabelText="Password"
-              onChange={(event, newValue) =>
-                this.setState({ password: newValue })
-              }
-            />
-            <br />
-            <RaisedButton
-              label="Submit"
-              primary={true}
-              style={style}
-              onClick={this.submitAuth}
-            />
-          </div>
+          <center>
+            <div>
+              <TextField
+                hintText="Enter your Email"
+                floatingLabelText="Username"
+                onChange={(event, newValue) =>
+                  this.setState({ username: newValue })
+                }
+              />
+              <br />
+              <TextField
+                type="password"
+                hintText="Enter your password"
+                floatingLabelText="Password"
+                onChange={(event, newValue) =>
+                  this.setState({ password: newValue })
+                }
+              />
+              <br />
+              <RaisedButton
+                label="Submit"
+                primary={true}
+                style={style}
+                onClick={this.submitAuth}
+              />
+            </div>
+          </center>
         </MuiThemeProvider>
       </div>
     );
@@ -55,4 +56,5 @@ class Login extends Component {
 const style = {
   margin: 15
 };
+
 export default Login;

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
-
+import Grid from "@material-ui/core/Grid";
+import Navigation from "../layouts/Navigation.jsx";
 import SugarSub from "../sugarIntake/SugarSub.jsx";
 import BloodPressure from "../bloodPressure/BloodPressure.jsx";
 import Carbs from "../carbsIntake/Carbs.jsx";
@@ -9,21 +10,35 @@ class UploadScreen extends Component {
   render() {
     return (
       <Fragment>
-        <div>
-          <h2>User Profile</h2>
-          <UserData />
-          <br />
-          <br />
-          <h2>Sugar intake</h2>
-          <SugarSub />
-          <br />
-          <br />
-          <h2>Blood Pressure</h2>
-          <BloodPressure />
-          <br />
-          <h2>carbs</h2>
-          <Carbs />
-        </div>
+        <Navigation />
+        <Grid
+          container
+          direction="center"
+          justify="space-evenly"
+          alignItems="baseline"
+          spacing={24}
+        >
+          <div>
+            <Grid item xs>
+              <UserData />
+            </Grid>
+          </div>
+          <div>
+            <Grid item xs>
+              <SugarSub />
+            </Grid>
+          </div>
+          <div>
+            <Grid item xs>
+              <BloodPressure />
+            </Grid>
+          </div>
+          <div>
+            <Grid item xs>
+              <Carbs />
+            </Grid>
+          </div>
+        </Grid>
       </Fragment>
     );
   }

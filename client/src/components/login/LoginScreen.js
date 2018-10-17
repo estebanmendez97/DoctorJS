@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import RaisedButton from "material-ui/RaisedButton";
 import Login from "./Login.js";
 import Register from "./Register.js";
+import LoginHeader from "../layouts/LoginHeader.jsx";
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -54,18 +55,21 @@ class LoginScreen extends Component {
   render() {
     return (
       <div className="loginscreen">
-        {this.state.loginscreen}
-        <div>
-          {this.state.loginmessage}
+        <center>
+          <LoginHeader />
+          {this.state.loginscreen}
           <div>
-            <RaisedButton
-              label={this.state.buttonLabel}
-              primary={true}
-              style={style}
-              onClick={event => this.handleClick(event)}
-            />
+            {this.state.loginmessage}
+            <div>
+              <RaisedButton
+                label={this.state.buttonLabel}
+                primary={true}
+                style={style}
+                onClick={event => this.handleClick(event)}
+              />
+            </div>
           </div>
-        </div>
+        </center>
       </div>
     );
   }

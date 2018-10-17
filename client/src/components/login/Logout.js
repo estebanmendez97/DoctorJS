@@ -5,12 +5,14 @@ import RaisedButton from "material-ui/RaisedButton";
 const Logout = props => (
   <div>
     <MuiThemeProvider>
-      <RaisedButton
-        label="Logout"
-        primary={true}
-        onClick={props.logout}
-        style={style}
-      />
+      <center>
+        <RaisedButton
+          label="Logout"
+          primary={true}
+          onClick={props.logout}
+          style={style}
+        />
+      </center>
     </MuiThemeProvider>
   </div>
 );

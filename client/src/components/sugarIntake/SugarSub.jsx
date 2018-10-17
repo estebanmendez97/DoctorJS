@@ -1,4 +1,9 @@
 import React, { Component, Fragment } from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import { withStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
 import SugarList from "./SugarList.jsx";
 import axios from "axios";
 
@@ -60,42 +65,68 @@ class SugarSub extends Component {
 
   render() {
     return (
-      <Fragment>
-        <h4>
-          When:
-          <select
-            onChange={this.handleWhenMeasure}
-            value={this.state.whenMesuare}
-            type="select"
-          >
-            <option>Before Breakfast</option>
-            <option>Before Lunch</option>
-            <option>Before Dinner</option>
-            <option>1Hr.After Meal</option>
-            <option>2Hrs. After Meal</option>
-            <option>Before Physical Activity</option>
-            <option>During Physical Activity</option>
-            <option>After Physical Activity</option>
-            <option>Before Bed</option>
-            <option>Middle of Night</option>
-            <option>Other</option>
-          </select>
-        </h4>
-        <br />
-        <h4>
-          Glucose Level:
-          <input
-            value={this.state.Glucose}
-            placeholder="000"
-            onChange={this.handleGlucose}
+      <Paper style={styles.Paper}>
+        <Fragment>
+          <Typography variant="title" gutterBottom align="center">
+            Sugar Intake
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom align="center">
+            When:
+            <select
+              onChange={this.handleWhenMeasure}
+              value={this.state.whenMesuare}
+              type="select"
+            >
+              <option>Before Breakfast</option>
+              <option>Before Lunch</option>
+              <option>Before Dinner</option>
+              <option>1Hr.After Meal</option>
+              <option>2Hrs. After Meal</option>
+              <option>Before Physical Activity</option>
+              <option>During Physical Activity</option>
+              <option>After Physical Activity</option>
+              <option>Before Bed</option>
+              <option>Middle of Night</option>
+              <option>Other</option>
+            </select>
+          </Typography>
+          <br />
+          <Typography variant="h6" gutterBottom>
+            Glucose Level:
+            <input
+              value={this.state.Glucose}
+              placeholder="000"
+              onChange={this.handleGlucose}
+            />
+          </Typography>
+          <RaisedButton
+            label="Submit your sugar level"
+            primary={true}
+            style={style}
+            onClick={this.submitLevel}
           />
-        </h4>
-        <button onClick={this.submitLevel}>Submit</button>
-        <br />
-        <SugarList sugarLevels={this.state.levels} />
-      </Fragment>
+          <br />
+          <SugarList sugarLevels={this.state.levels} />
+        </Fragment>
+      </Paper>
     );
   }
 }
+const style = {
+  margin: 15
+};
+const styles = {
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: "center"
+  },
+  root: {
+    flexGrow: 1
+  }
+};
 
-export default SugarSub;
+export default withStyles(styles)(SugarSub);

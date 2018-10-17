@@ -1,4 +1,8 @@
 import React, { Component, Fragment } from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
 
 import PressureList from "./PressureList.jsx";
@@ -63,36 +67,64 @@ class BloodPressure extends Component {
   render() {
     return (
       <div>
-        <Fragment>
-          <h4>
-            When:
-            <select
-              onChange={this.handleWhenReading}
-              value={this.state.whenReading}
-              type="select"
-            >
-              <option>Blood Pressure Readings</option>
-              <option>Morning Reading</option>
-              <option>Afternoon Reading</option>
-              <option>Night Reading</option>
-            </select>
-          </h4>
-          <br />
-          <h4>
-            Blood Pressure Level:
-            <input
-              placeholder="000"
-              value={this.bloodPresure}
-              onChange={this.handleBloodPressure}
-            />
+        <Paper style={styles.Paper}>
+          <Fragment>
+            <Typography variant="title" gutterBottom align="center">
+              Blood Pressure
+            </Typography>
+            <Typography variant="subtitle1" gutterBottom align="center">
+              When:
+              <select
+                onChange={this.handleWhenReading}
+                value={this.state.whenReading}
+                type="select"
+              >
+                <option>Blood Pressure Readings</option>
+                <option>Morning Reading</option>
+                <option>Afternoon Reading</option>
+                <option>Night Reading</option>
+              </select>
+            </Typography>
             <br />
-            <button onClick={this.submitReading}>Submit</button>
-          </h4>
-          <br />
-          <PressureList pressure={this.state.list} />
-        </Fragment>
+            <Typography variant="subtitle1" gutterBottom align="center">
+              Blood Pressure Level:
+              <input
+                placeholder="000"
+                value={this.bloodPresure}
+                onChange={this.handleBloodPressure}
+              />
+              <br />
+              <RaisedButton
+                label="submit your blood pressure"
+                primary={true}
+                style={style}
+                onClick={this.submitReading}
+              />
+            </Typography>
+            <br />
+            <PressureList pressure={this.state.list} />
+          </Fragment>
+        </Paper>
       </div>
     );
   }
 }
-export default BloodPressure;
+
+const style = {
+  margin: 15
+};
+
+const styles = {
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: "center"
+  },
+  root: {
+    flexGrow: 1
+  }
+};
+export default withStyles(styles)(BloodPressure);
