@@ -1,4 +1,8 @@
 import React, { Component, Fragment } from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 import Profile from "./Profile.jsx";
 
 import $ from "jquery";
@@ -47,7 +51,7 @@ class UserData extends Component {
       height: e.target.value
     });
   }
-  //somewhwee here is gonna send the token (ajax jwt post)
+  //somewhere here is gonna send the token (ajax jwt post)
   addData(gender, age, weight, height) {
     $.ajax({
       url: "/userData",
@@ -84,31 +88,69 @@ class UserData extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={styles.root}>
         <Fragment>
-          <h4>Your Gender</h4>
-          <select value={this.gender} onChange={this.handleGender}>
-            <option>Choose your Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-          <br />
-          <h4>Your Age</h4>
-          <input value={this.age} onChange={this.handleAge} />
-          <br />
-          <h4>Your Weight</h4>
-          <input value={this.weight} onChange={this.handleWeight} />
-          <br />
-          <h4>Your Height</h4>
-          <input value={this.height} onChange={this.handleHeight} />
-          <br />
-          <br />
-          <button onClick={this.submitData}>Submit your info</button>
-          <br />
-          <Profile />
+          <Paper style={styles.Paper}>
+            <Typography variant="title" gutterBottom align="center">
+              User Profile
+            </Typography>
+            <select value={this.gender} onChange={this.handleGender}>
+              <option>Choose your Gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+            <br />
+            <Typography variant="subtitle1" gutterBottom align="center">
+              Your Age
+            </Typography>
+            <input value={this.age} onChange={this.handleAge} />
+            <br />
+            <Typography variant="subtitle1" gutterBottom align="center">
+              Your Weight
+            </Typography>
+            <input value={this.weight} onChange={this.handleWeight} />
+            <br />
+            <Typography
+              component="h6"
+              variant="subtitle1"
+              gutterBottom
+              align="center"
+            >
+              Your Height
+            </Typography>
+            <input value={this.height} onChange={this.handleHeight} />
+            <br />
+            <br />
+            <RaisedButton
+              label="Update Your Info"
+              style={style}
+              primary={true}
+              onClick={this.submitData}
+            />
+            <br />
+            <Profile />
+          </Paper>
         </Fragment>
       </div>
     );
   }
 }
-export default UserData;
+const style = {
+  margin: 15
+};
+
+const styles = theme => ({
+  Paper: {
+    margin: 25,
+    padding: theme.spacing.unit * 4,
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: "center"
+  },
+  root: {
+    flexGrow: 1
+  }
+});
+export default withStyles(styles)(UserData);

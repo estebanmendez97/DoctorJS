@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AppBar from "material-ui/AppBar";
 import RaisedButton from "material-ui/RaisedButton";
 import TextField from "material-ui/TextField";
 import axios from "axios";
@@ -18,13 +17,6 @@ class Register extends Component {
   handleClick(event) {
     event.preventDefault();
     var apiBaseUrl = "http://localhost:3000/api/";
-    console.log(
-      "VALUES",
-      this.state.first_name,
-      this.state.last_name,
-      this.state.email,
-      this.state.password
-    );
     var self = this;
     var payload = {
       first_name: this.state.first_name,
@@ -59,7 +51,6 @@ class Register extends Component {
       <div>
         <center>
           <div>
-            <AppBar title="Register" />
             <TextField
               hintText="Enter your First Name"
               floatingLabelText="First Name"
