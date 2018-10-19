@@ -9,13 +9,48 @@ import Tooltip from "recharts/lib/component/Tooltip";
 import Legend from "recharts/lib/component/Legend";
 
 const data = [
-  { name: "Mon", Visits: 2200, Orders: 3400 },
-  { name: "Tue", Visits: 1280, Orders: 2398 },
-  { name: "Wed", Visits: 5000, Orders: 4300 },
-  { name: "Thu", Visits: 4780, Orders: 2908 },
-  { name: "Fri", Visits: 5890, Orders: 4800 },
-  { name: "Sat", Visits: 4390, Orders: 3800 },
-  { name: "Sun", Visits: 4490, Orders: 4300 }
+  {
+    name: "Mon",
+    Sugar_Level: 111,
+    Blood_Pressure_Level: 113,
+    Carbs_Level: 223
+  },
+  {
+    name: "Tue",
+    Sugar_Level: 103,
+    Blood_Pressure_Level: 105,
+    Carbs_Level: 209
+  },
+  {
+    name: "Wed",
+    Sugar_Level: 99,
+    Blood_Pressure_Level: 91,
+    Carbs_Level: 201
+  },
+  {
+    name: "Thu",
+    Sugar_Level: 95,
+    Blood_Pressure_Level: 109,
+    Carbs_Level: 195
+  },
+  {
+    name: "Fri",
+    Sugar_Level: 102,
+    Blood_Pressure_Level: 102,
+    Carbs_Level: 220
+  },
+  {
+    name: "Sat",
+    Sugar_Level: 107,
+    Blood_Pressure_Level: 110,
+    Carbs_Level: 234
+  },
+  {
+    name: "Sun",
+    Sugar_Level: 117,
+    Blood_Pressure_Level: 99,
+    Carbs_Level: 151
+  }
 ];
 
 function SimpleLineChart() {
@@ -28,10 +63,10 @@ function SimpleLineChart() {
         <CartesianGrid vertical={false} strokeDasharray="3 3" />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="Visits" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="Sugar_Level" stroke="#82ca9d" />
         <Line
           type="monotone"
-          dataKey="Orders"
+          dataKey="Blood_Pressure_Level"
           stroke="#8884d8"
           activeDot={{ r: 8 }}
         />

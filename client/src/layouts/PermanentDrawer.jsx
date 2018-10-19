@@ -184,7 +184,7 @@ class PermanentDrawer extends React.Component {
               <SimpleLineChart />
             </Typography>
             <Typography variant="h4" gutterBottom component="h2">
-              Readings
+              Dietary Sample
             </Typography>
             <div className={classes.tableContainer}>
               <SimpleTable />
