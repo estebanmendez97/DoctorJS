@@ -3,6 +3,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+
 import Profile from "./Profile.jsx";
 
 import $ from "jquery";
@@ -94,40 +95,44 @@ class UserData extends Component {
             <Typography variant="title" gutterBottom align="center">
               User Profile
             </Typography>
-            <select value={this.gender} onChange={this.handleGender}>
-              <option>Choose your Gender</option>
-              <option>Male</option>
-              <option>Female</option>
-            </select>
+            <center>
+              <select value={this.gender} onChange={this.handleGender}>
+                <option>Choose your Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </center>
             <br />
-            <Typography variant="subtitle1" gutterBottom align="center">
-              Your Age
-            </Typography>
-            <input value={this.age} onChange={this.handleAge} />
-            <br />
-            <Typography variant="subtitle1" gutterBottom align="center">
-              Your Weight
-            </Typography>
-            <input value={this.weight} onChange={this.handleWeight} />
-            <br />
-            <Typography
-              component="h6"
-              variant="subtitle1"
-              gutterBottom
-              align="center"
-            >
-              Your Height
-            </Typography>
-            <input value={this.height} onChange={this.handleHeight} />
-            <br />
-            <br />
-            <RaisedButton
-              label="Update Your Info"
-              style={style}
-              primary={true}
-              onClick={this.submitData}
-            />
-            <br />
+            <center>
+              <Typography variant="subtitle1" gutterBottom align="center">
+                Your Age
+              </Typography>
+              <input value={this.age} onChange={this.handleAge} />
+              <br />
+              <Typography variant="subtitle1" gutterBottom align="center">
+                Your Weight
+              </Typography>
+              <input value={this.weight} onChange={this.handleWeight} />
+              <br />
+              <Typography
+                component="h6"
+                variant="subtitle1"
+                gutterBottom
+                align="center"
+              >
+                Your Height
+              </Typography>
+              <input value={this.height} onChange={this.handleHeight} />
+              <br />
+              <br />
+              <RaisedButton
+                label="Update Your Info"
+                style={style}
+                primary={true}
+                onClick={this.submitData}
+              />
+              <br />
+            </center>
             <Profile />
           </Paper>
         </Fragment>
