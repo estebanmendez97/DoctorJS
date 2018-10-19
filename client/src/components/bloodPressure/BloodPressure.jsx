@@ -66,46 +66,44 @@ class BloodPressure extends Component {
 
   render() {
     return (
-      <div>
-        <Paper style={styles.Paper}>
-          <Fragment>
-            <Typography variant="title" gutterBottom align="center">
-              Blood Pressure
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom align="center">
-              When:
-              <select
-                onChange={this.handleWhenReading}
-                value={this.state.whenReading}
-                type="select"
-              >
-                <option>Blood Pressure Readings</option>
-                <option>Morning Reading</option>
-                <option>Afternoon Reading</option>
-                <option>Night Reading</option>
-              </select>
-            </Typography>
+      <Paper style={styles.Paper}>
+        <Fragment>
+          <Typography variant="title" gutterBottom align="center">
+            Blood Pressure
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom align="center">
+            When:
+            <select
+              onChange={this.handleWhenReading}
+              value={this.state.whenReading}
+              type="select"
+            >
+              <option>Blood Pressure Readings</option>
+              <option>Morning Reading</option>
+              <option>Afternoon Reading</option>
+              <option>Night Reading</option>
+            </select>
+          </Typography>
+          <br />
+          <Typography variant="subtitle1" gutterBottom align="center">
+            Blood Pressure Level:
+            <input
+              placeholder="000"
+              value={this.bloodPresure}
+              onChange={this.handleBloodPressure}
+            />
             <br />
-            <Typography variant="subtitle1" gutterBottom align="center">
-              Blood Pressure Level:
-              <input
-                placeholder="000"
-                value={this.bloodPresure}
-                onChange={this.handleBloodPressure}
-              />
-              <br />
-              <RaisedButton
-                label="submit your blood pressure"
-                primary={true}
-                style={style}
-                onClick={this.submitReading}
-              />
-            </Typography>
-            <br />
-            <PressureList pressure={this.state.list} />
-          </Fragment>
-        </Paper>
-      </div>
+            <RaisedButton
+              label="submit your blood pressure"
+              primary={true}
+              style={style}
+              onClick={this.submitReading}
+            />
+          </Typography>
+          <br />
+          <PressureList pressure={this.state.list} />
+        </Fragment>
+      </Paper>
     );
   }
 }

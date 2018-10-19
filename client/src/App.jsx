@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import Loginscreen from "./components/login/LoginScreen.js";
-import UploadScreen from "./components/login/PrimaryScreen";
-import Logout from "../src/components/login/Logout.js";
+import Loginscreen from "../src/login/LoginScreen.js";
+import UploadScreen from "./PrimaryScreen";
+import Logout from "../src/login/Logout.js";
 import axios from "axios";
 //const jwt = require("jsonwebtoken");
 
