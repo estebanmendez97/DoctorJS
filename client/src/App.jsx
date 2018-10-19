@@ -75,3 +75,15 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+MuiThemeProvider
+UploadScreen
+MainDrawer
+BrowserRouter
+  path=/ Dashboard
+  path   SugarSub
+  path bloodPressure
+
+Logout 
+ */
