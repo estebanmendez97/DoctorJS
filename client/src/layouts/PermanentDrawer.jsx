@@ -175,21 +175,6 @@ class PermanentDrawer extends React.Component {
             <Divider />
             <List>{}</List>
           </Drawer>
-          <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Typography variant="h4" gutterBottom component="h2">
-              My Levels
-            </Typography>
-            <Typography component="div" className={classes.chartContainer}>
-              <SimpleLineChart />
-            </Typography>
-            <Typography variant="h4" gutterBottom component="h2">
-              Dietary Sample
-            </Typography>
-            <div className={classes.tableContainer}>
-              <SimpleTable />
-            </div>
-          </main>
         </div>
       </React.Fragment>
     );
