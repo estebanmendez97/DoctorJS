@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -86,12 +87,6 @@ const styles = theme => ({
     height: "100vh",
     overflow: "auto"
   },
-  chartContainer: {
-    marginLeft: -22
-  },
-  tableContainer: {
-    height: 320
-  },
   h5: {
     marginBottom: theme.spacing.unit * 2
   }
@@ -155,26 +150,32 @@ class PermanentDrawer extends React.Component {
               </IconButton>
             </Toolbar>
           </AppBar>
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: classNames(
-                classes.drawerPaper,
-                !this.state.open && classes.drawerPaperClose
-              )
-            }}
-            open={this.state.open}
-          >
-            <div className={classes.toolbarIcon}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-            <List>{mainListItems}</List>
-            <Divider />
-            <List>{}</List>
-          </Drawer>
+          <Grid container space={24}>
+            <Grid item xs={6} sm={3}>
+              <div>
+                <Drawer
+                  variant="permanent"
+                  classes={{
+                    paper: classNames(
+                      classes.drawerPaper,
+                      !this.state.open && classes.drawerPaperClose
+                    )
+                  }}
+                  open={this.state.open}
+                >
+                  <div className={classes.toolbarIcon}>
+                    <IconButton onClick={this.handleDrawerClose}>
+                      <ChevronLeftIcon />
+                    </IconButton>
+                  </div>
+                  <Divider />
+                  <List>{mainListItems}</List>
+                  <Divider />
+                  <List>{}</List>
+                </Drawer>
+              </div>
+            </Grid>
+          </Grid>
         </div>
       </React.Fragment>
     );
