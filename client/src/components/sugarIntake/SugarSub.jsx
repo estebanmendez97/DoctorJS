@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from "react";
+import axios from "axios";
+//material-ui core
 import RaisedButton from "material-ui/RaisedButton";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-
+//components to render
+import SugarChart from "./SugarChart";
 import SugarList from "./SugarList.jsx";
-import axios from "axios";
 
 class SugarSub extends Component {
   constructor(props) {
@@ -78,6 +80,7 @@ class SugarSub extends Component {
                 value={this.state.whenMesuare}
                 type="select"
               >
+                <option>Glucose Reading</option>
                 <option>Before Breakfast</option>
                 <option>Before Lunch</option>
                 <option>Before Dinner</option>
@@ -108,6 +111,7 @@ class SugarSub extends Component {
             />
             <br />
             <SugarList sugarLevels={this.state.levels} />
+            <SugarChart />
           </Fragment>
         </center>
       </Paper>

@@ -3,7 +3,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-
+import CarbsChart from "./CarbsChart";
 import CarbsList from "./CarbsList.jsx";
 import axios from "axios";
 
@@ -81,6 +81,7 @@ class Carbs extends Component {
                   value={this.state.amountMesuare}
                   type="select"
                 >
+                  <option>Carbs Reading</option>
                   <option>Breakfast</option>
                   <option>snack1</option>
                   <option>lunch</option>
@@ -105,6 +106,7 @@ class Carbs extends Component {
               />
               <br />
               <CarbsList carbsList={this.state.list} />
+              <CarbsChart />
             </Fragment>
           </center>
         </Paper>

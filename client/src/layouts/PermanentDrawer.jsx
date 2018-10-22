@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -89,10 +89,13 @@ const styles = theme => ({
   },
   h5: {
     marginBottom: theme.spacing.unit * 2
+  },
+  avatar: {
+    margin: 20
   }
 });
 
-class PermanentDrawer extends React.Component {
+class PermanentDrawer extends Component {
   state = {
     open: false
   };
@@ -109,7 +112,7 @@ class PermanentDrawer extends React.Component {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <CssBaseline />
         <div className={classes.root}>
           <AppBar
@@ -143,41 +146,36 @@ class PermanentDrawer extends React.Component {
               >
                 Welcome to Doctor JS
               </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+
+              <Avatar
+                alt="Fernando Figueroa"
+                src="" // your picture goes here imgur.com
+                className={classes.avatar}
+              />
             </Toolbar>
           </AppBar>
-          <Grid container space={24}>
-            <Grid item xs={6} sm={3}>
-              <div>
-                <Drawer
-                  variant="permanent"
-                  classes={{
-                    paper: classNames(
-                      classes.drawerPaper,
-                      !this.state.open && classes.drawerPaperClose
-                    )
-                  }}
-                  open={this.state.open}
-                >
-                  <div className={classes.toolbarIcon}>
-                    <IconButton onClick={this.handleDrawerClose}>
-                      <ChevronLeftIcon />
-                    </IconButton>
-                  </div>
-                  <Divider />
-                  <List>{mainListItems}</List>
-                  <Divider />
-                  <List>{}</List>
-                </Drawer>
-              </div>
-            </Grid>
-          </Grid>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: classNames(
+                classes.drawerPaper,
+                !this.state.open && classes.drawerPaperClose
+              )
+            }}
+            open={this.state.open}
+          >
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={this.handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <List>{mainListItems}</List>
+            <Divider />
+            <List>{}</List>
+          </Drawer>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

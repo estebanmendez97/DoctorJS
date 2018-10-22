@@ -4,8 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
-
 import PressureList from "./PressureList.jsx";
+import BloodLineChart from "./BloodChart";
 
 class BloodPressure extends Component {
   constructor(props) {
@@ -102,6 +102,7 @@ class BloodPressure extends Component {
           </Typography>
           <br />
           <PressureList pressure={this.state.list} />
+          <BloodLineChart />
         </Fragment>
       </Paper>
     );

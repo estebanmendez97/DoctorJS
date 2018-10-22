@@ -1,6 +1,5 @@
 import React from "react";
 import PressureItem from "./PressureItem.jsx";
-
 const PressureList = props => (
   <div>
     {props.pressure.map((pressureItem, index) => (
@@ -8,4 +7,5 @@ const PressureList = props => (
     ))}
   </div>
 );
+
 export default PressureList;
