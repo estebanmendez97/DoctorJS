@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -116,12 +117,24 @@ class UserData extends Component {
                   <Typography variant="subtitle1" gutterBottom align="center">
                     Your Age
                   </Typography>
-                  <input value={this.age} onChange={this.handleAge} />
+                  <TextField
+                    type="age"
+                    hintText="Enter your Age"
+                    floatingLabelText="Enter your age"
+                    value={this.age}
+                    onChange={this.handleAge}
+                  />
                   <br />
                   <Typography variant="subtitle1" gutterBottom align="center">
                     Your Weight
                   </Typography>
-                  <input value={this.weight} onChange={this.handleWeight} />
+                  <TextField
+                    type="weight"
+                    hintText="Enter your weight(lbs)"
+                    floatingLabelText="Enter your weight(lbs)"
+                    value={this.weight}
+                    onChange={this.handleWeight}
+                  />
                   <br />
                   <Typography
                     component="h6"
@@ -131,7 +144,13 @@ class UserData extends Component {
                   >
                     Your Height
                   </Typography>
-                  <input value={this.height} onChange={this.handleHeight} />
+                  <TextField
+                    type="height"
+                    hintText="Enter your height(cm)"
+                    floatingLabelText="Enter your height(cm)"
+                    value={this.height}
+                    onChange={this.handleHeight}
+                  />
                   <br />
                   <br />
                   <RaisedButton

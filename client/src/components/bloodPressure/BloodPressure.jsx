@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -87,8 +88,10 @@ class BloodPressure extends Component {
           <br />
           <Typography variant="subtitle1" gutterBottom align="center">
             Blood Pressure Level:
-            <input
-              placeholder="000"
+            <TextField
+              type="blood pressure"
+              hintText="Enter your Blood Pressure"
+              floatingLabelText="Enter your Blood Pressure"
               value={this.bloodPresure}
               onChange={this.handleBloodPressure}
             />

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -92,9 +93,11 @@ class Carbs extends Component {
               <br />
               <Typography variant="subtitle1" gutterBottom align="center">
                 Carbs Level:
-                <input
+                <TextField
+                  type="Carbs Level"
+                  hintText="Enter your Carbs Reading"
+                  floatingLabelText="Enter your Carbs Reading"
                   value={this.state.Carbs}
-                  placeholder="000"
                   onChange={this.handleCarbs}
                 />
               </Typography>
