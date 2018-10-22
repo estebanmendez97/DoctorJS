@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import axios from "axios";
 //material-ui core
+import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -97,9 +98,11 @@ class SugarSub extends Component {
             <br />
             <Typography variant="h6" gutterBottom>
               Glucose Level:
-              <input
+              <TextField
+                type="sugar intake"
+                hintText="Enter your Glucose Level "
+                floatingLabelText="Enter your Glucose Level"
                 value={this.state.Glucose}
-                placeholder="000"
                 onChange={this.handleGlucose}
               />
             </Typography>

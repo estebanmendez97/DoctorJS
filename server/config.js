@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const compression = require("compression");
-const database = require("../database/mysql.js");
+const database = require("../database/mysql");
 const app = express();
 
 //middleware
