@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
+import Avatar from "@material-ui/core/Avatar";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -86,18 +87,15 @@ const styles = theme => ({
     height: "100vh",
     overflow: "auto"
   },
-  chartContainer: {
-    marginLeft: -22
-  },
-  tableContainer: {
-    height: 320
-  },
   h5: {
     marginBottom: theme.spacing.unit * 2
+  },
+  avatar: {
+    margin: 20
   }
 });
 
-class PermanentDrawer extends React.Component {
+class PermanentDrawer extends Component {
   state = {
     open: false
   };
@@ -114,7 +112,7 @@ class PermanentDrawer extends React.Component {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         <CssBaseline />
         <div className={classes.root}>
           <AppBar
@@ -148,11 +146,12 @@ class PermanentDrawer extends React.Component {
               >
                 Welcome to Doctor JS
               </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+
+              <Avatar
+                alt="Fernando Figueroa"
+                src="" // your picture goes here imgur.com
+                className={classes.avatar}
+              />
             </Toolbar>
           </AppBar>
           <Drawer
@@ -175,23 +174,8 @@ class PermanentDrawer extends React.Component {
             <Divider />
             <List>{}</List>
           </Drawer>
-          <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Typography variant="h4" gutterBottom component="h2">
-              My Levels
-            </Typography>
-            <Typography component="div" className={classes.chartContainer}>
-              <SimpleLineChart />
-            </Typography>
-            <Typography variant="h4" gutterBottom component="h2">
-              Dietary Sample
-            </Typography>
-            <div className={classes.tableContainer}>
-              <SimpleTable />
-            </div>
-          </main>
         </div>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

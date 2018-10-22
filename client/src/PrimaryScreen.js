@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
-//import MainDrawer from "./layouts/MainDrawer.jsx";
-
+//main components
+import MainDashboard from "./components/dashboard/Dashboard";
 import SugarSub from "./components/sugarIntake/SugarSub";
 import BloodPressure from "./components/bloodPressure/BloodPressure";
 import Carbs from "./components/carbsIntake/Carbs";
@@ -14,7 +14,8 @@ class UploadScreen extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route exact={true} path="/" component={PermanentDrawer} />
+          <PermanentDrawer />
+          <Route exact path="/" component={MainDashboard} />
           <Route path="/userData" component={UserData} />
           <Route path="/submitLevel" component={SugarSub} />
           <Route path="/carbLevel" component={Carbs} />

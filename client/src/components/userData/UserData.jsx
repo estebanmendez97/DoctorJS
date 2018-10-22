@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import RaisedButton from "material-ui/RaisedButton";
+import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -91,50 +92,64 @@ class UserData extends Component {
     return (
       <div className={styles.root}>
         <Fragment>
-          <Paper style={styles.Paper}>
-            <Typography variant="title" gutterBottom align="center">
-              User Profile
-            </Typography>
-            <center>
-              <select value={this.gender} onChange={this.handleGender}>
-                <option>Choose your Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-              </select>
-            </center>
-            <br />
-            <center>
-              <Typography variant="subtitle1" gutterBottom align="center">
-                Your Age
-              </Typography>
-              <input value={this.age} onChange={this.handleAge} />
-              <br />
-              <Typography variant="subtitle1" gutterBottom align="center">
-                Your Weight
-              </Typography>
-              <input value={this.weight} onChange={this.handleWeight} />
-              <br />
-              <Typography
-                component="h6"
-                variant="subtitle1"
-                gutterBottom
-                align="center"
-              >
-                Your Height
-              </Typography>
-              <input value={this.height} onChange={this.handleHeight} />
-              <br />
-              <br />
-              <RaisedButton
-                label="Update Your Info"
-                style={style}
-                primary={true}
-                onClick={this.submitData}
-              />
-              <br />
-            </center>
-            <Profile />
-          </Paper>
+          <Grid
+            container
+            spacing={24}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs>
+              <Paper style={styles.Paper}>
+                <Typography variant="title" gutterBottom align="center">
+                  User Profile
+                </Typography>
+                <center>
+                  <select value={this.gender} onChange={this.handleGender}>
+                    <option>Choose your Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </center>
+                <br />
+                <center>
+                  <Typography variant="subtitle1" gutterBottom align="center">
+                    Your Age
+                  </Typography>
+                  <input value={this.age} onChange={this.handleAge} />
+                  <br />
+                  <Typography variant="subtitle1" gutterBottom align="center">
+                    Your Weight
+                  </Typography>
+                  <input value={this.weight} onChange={this.handleWeight} />
+                  <br />
+                  <Typography
+                    component="h6"
+                    variant="subtitle1"
+                    gutterBottom
+                    align="center"
+                  >
+                    Your Height
+                  </Typography>
+                  <input value={this.height} onChange={this.handleHeight} />
+                  <br />
+                  <br />
+                  <RaisedButton
+                    label="Update Your Info"
+                    style={style}
+                    primary={true}
+                    onClick={this.submitData}
+                  />
+                  <br />
+                </center>
+              </Paper>
+              <div>
+                <Grid item xs>
+                  <Profile />
+                </Grid>
+              </div>
+            </Grid>
+          </Grid>
         </Fragment>
       </div>
     );
@@ -144,10 +159,10 @@ const style = {
   margin: 15
 };
 
-const styles = theme => ({
+const styles = {
   Paper: {
     margin: 25,
-    padding: theme.spacing.unit * 4,
+    padding: 20,
     marginTop: 20,
     marginBottom: 10,
     marginLeft: 10,
@@ -157,5 +172,5 @@ const styles = theme => ({
   root: {
     flexGrow: 1
   }
-});
+};
 export default withStyles(styles)(UserData);

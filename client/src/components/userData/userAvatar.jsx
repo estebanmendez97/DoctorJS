@@ -1,32 +1,38 @@
 import React from "react";
-import Avatar from "material-ui/Avatar";
-import List from "material-ui/List";
-import ListItem from "material-ui/ListItem";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withStyles } from "@material-ui/core/styles";
+import Avatar from "@material-ui/core/Avatar";
 
-const style = { margin: 10 };
+const styles = {
+  row: {
+    display: "flex",
+    justifyContent: "center"
+  },
+  avatar: {
+    margin: 20
+  },
+  bigAvatar: {
+    width: 60,
+    height: 80
+  }
+};
 
-const UserAvatar = () => (
-  <List>
-    <ListItem
-      disabled={true}
-      leftAvatar={
-        <Avatar src="" /> //set up your image source when you log in
-      }
-    >
-      Image Avatar
-    </ListItem>
-    <ListItem
-      disabled={true}
-      leftAvatar={
-        <Avatar
-          src="" // your image source path  when you log in jpg file or jpeg file
-          size={30}
-          style={style}
-        />
-      }
-    >
-      Image avatar with custom size
-    </ListItem>
-  </List>
-);
-export default UserAvatar;
+function UserAvatar(props) {
+  const { classes } = props;
+  return (
+    <div className={classes.row}>
+      <Avatar
+        alt="Fernando Figueroa"
+        src="" //your picture goes here imgur.com
+        className={classNames(classes.avatar, classes.bigAvatar)}
+      />
+    </div>
+  );
+}
+
+UserAvatar.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(UserAvatar);
